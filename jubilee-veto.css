@@ -1,0 +1,312 @@
+/* ============================================================================
+   JUBILEE VETO — Styles
+   Grimdark Old World aesthetic for the player veto system
+   ============================================================================ */
+
+/* ============================================================================
+   TRACKER WIDGET — Floating panel
+   ============================================================================ */
+
+.jubilee-tracker {
+  position: fixed;
+  bottom: 80px;
+  left: 15px;
+  z-index: 100;
+  background: linear-gradient(145deg, #1a1a1a 0%, #2a2018 50%, #1a1a1a 100%);
+  border: 2px solid #5c4a32;
+  border-radius: 6px;
+  padding: 10px 14px;
+  min-width: 200px;
+  max-width: 280px;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 215, 0, 0.05);
+  font-family: "Modesto Condensed", "Palatino Linotype", "Book Antiqua", serif;
+  color: #c9b98a;
+  transition: all 0.3s ease;
+}
+
+.jubilee-tracker--idle {
+  opacity: 0.7;
+  min-width: 160px;
+}
+
+.jubilee-tracker--idle:hover {
+  opacity: 1;
+}
+
+/* Pulse animation when vote is called */
+.jubilee-tracker--pulse {
+  animation: jubilee-pulse 0.6s ease-out;
+}
+
+@keyframes jubilee-pulse {
+  0%   { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 0 0 rgba(218, 165, 32, 0.5); }
+  50%  { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 20px 10px rgba(218, 165, 32, 0.3); }
+  100% { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 0 0 rgba(218, 165, 32, 0); }
+}
+
+/* Header */
+.jubilee-tracker__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #3d3225;
+  padding-bottom: 5px;
+}
+
+.jubilee-tracker__title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #daa520;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.5px;
+}
+
+.jubilee-tracker__status {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8a7a5a;
+}
+
+.jubilee-tracker:not(.jubilee-tracker--idle) .jubilee-tracker__status {
+  color: #cd853f;
+  animation: jubilee-status-blink 2s ease-in-out infinite;
+}
+
+@keyframes jubilee-status-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+/* Topic */
+.jubilee-tracker__topic {
+  font-size: 12px;
+  font-style: italic;
+  color: #a89870;
+  margin-bottom: 8px;
+  padding: 4px 6px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  border-left: 2px solid #daa520;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Vote pips */
+.jubilee-tracker__pips {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin: 8px 0;
+}
+
+.jubilee-tracker__pip {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid #5c4a32;
+  background: rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.jubilee-tracker__pip--filled {
+  background: radial-gradient(circle at 40% 40%, #daa520, #8b6914);
+  border-color: #daa520;
+  box-shadow: 0 0 8px rgba(218, 165, 32, 0.5);
+  animation: jubilee-pip-fill 0.4s ease-out;
+}
+
+@keyframes jubilee-pip-fill {
+  0%   { transform: scale(0.5); opacity: 0; }
+  60%  { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Vote count */
+.jubilee-tracker__count {
+  text-align: center;
+  font-size: 11px;
+  color: #8a7a5a;
+  margin-bottom: 6px;
+}
+
+/* Action buttons */
+.jubilee-tracker__actions {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.jubilee-tracker__btn {
+  padding: 4px 10px;
+  border: 1px solid #5c4a32;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+}
+
+.jubilee-tracker__btn--call {
+  background: linear-gradient(180deg, #3d3225, #2a2018);
+  color: #daa520;
+}
+
+.jubilee-tracker__btn--call:hover {
+  background: linear-gradient(180deg, #4d4230, #3a3028);
+  border-color: #daa520;
+  box-shadow: 0 0 6px rgba(218, 165, 32, 0.3);
+}
+
+.jubilee-tracker__btn--vote {
+  background: linear-gradient(180deg, #2a3a20, #1a2a15);
+  color: #90c060;
+  border-color: #4a6a32;
+}
+
+.jubilee-tracker__btn--vote:hover {
+  background: linear-gradient(180deg, #3a4a30, #2a3a25);
+  border-color: #90c060;
+  box-shadow: 0 0 6px rgba(144, 192, 96, 0.3);
+}
+
+.jubilee-tracker__btn--cancel {
+  background: linear-gradient(180deg, #3a2020, #2a1515);
+  color: #c06060;
+  border-color: #6a3232;
+}
+
+.jubilee-tracker__btn--cancel:hover {
+  background: linear-gradient(180deg, #4a3030, #3a2525);
+  border-color: #c06060;
+  box-shadow: 0 0 6px rgba(192, 96, 96, 0.3);
+}
+
+/* ============================================================================
+   CHAT MESSAGES
+   ============================================================================ */
+
+.jubilee-chat {
+  display: flex;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #3d3225;
+  font-family: "Modesto Condensed", "Palatino Linotype", "Book Antiqua", serif;
+}
+
+.jubilee-chat__icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.jubilee-chat__body {
+  flex: 1;
+}
+
+.jubilee-chat__title {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.jubilee-chat__flavor {
+  font-style: italic;
+  font-size: 12px;
+  margin: 2px 0;
+}
+
+.jubilee-chat__detail {
+  font-size: 12px;
+  margin: 4px 0;
+}
+
+.jubilee-chat__status {
+  font-size: 11px;
+  font-weight: bold;
+  margin: 4px 0 0 0;
+}
+
+.jubilee-chat__voters {
+  font-size: 11px;
+  color: #8a7a5a;
+  margin: 2px 0 0 0;
+}
+
+/* Called */
+.jubilee-chat--called {
+  background: linear-gradient(135deg, #1a1a10, #2a2518);
+  border-color: #daa520;
+}
+
+.jubilee-chat--called .jubilee-chat__title {
+  color: #daa520;
+}
+
+/* Vote cast */
+.jubilee-chat--vote {
+  background: linear-gradient(135deg, #1a1a10, #1a2518);
+  border-color: #5c6a32;
+}
+
+/* Veto reached */
+.jubilee-chat--veto-reached {
+  background: linear-gradient(135deg, #2a1a10, #2a2018);
+  border-color: #daa520;
+  box-shadow: 0 0 12px rgba(218, 165, 32, 0.2);
+}
+
+.jubilee-chat--veto-reached .jubilee-chat__title {
+  color: #daa520;
+  font-size: 16px;
+  text-shadow: 0 0 8px rgba(218, 165, 32, 0.3);
+}
+
+/* Cancelled */
+.jubilee-chat--cancelled {
+  background: linear-gradient(135deg, #1a1a1a, #2a1a1a);
+  border-color: #6a3232;
+  opacity: 0.8;
+}
+
+/* Status / Help */
+.jubilee-chat--status,
+.jubilee-chat--help {
+  background: linear-gradient(135deg, #1a1a1a, #222222);
+  border-color: #3d3225;
+}
+
+.jubilee-chat--help .jubilee-chat__title {
+  color: #daa520;
+}
+
+/* ============================================================================
+   SCREEN FLASH — Veto reached effect
+   ============================================================================ */
+
+.jubilee-flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(218, 165, 32, 0.25), transparent 70%);
+  animation: jubilee-flash-anim 1.5s ease-out forwards;
+}
+
+@keyframes jubilee-flash-anim {
+  0%   { opacity: 0; }
+  15%  { opacity: 1; }
+  100% { opacity: 0; }
+}
