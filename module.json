@@ -1,7 +1,7 @@
 {
   "id": "wfrp4e-jubilee-veto",
-  "title": "Jubilee Veto — Player Veto System for WFRP4e",
-  "description": "A thematic player veto system for Warhammer Fantasy Roleplay 4e. Players can call a Jubilee vote to veto an idea or course of action. Once 3 or more votes are cast, the veto is declared and the system resets. Styled to fit the grim and perilous Old World aesthetic.",
+  "title": "Jubilee Veto - Player Veto System for WFRP4e",
+  "description": "A thematic player veto system for Warhammer Fantasy Roleplay 4e. Players can call a Jubilee vote to veto an idea or course of action. Once 3 or more votes are cast, the veto is declared and the system resets.",
   "authors": [
     {
       "name": "Ryan"
@@ -10,7 +10,7 @@
   "version": "1.0.0",
   "compatibility": {
     "minimum": "13",
-    "verified": "13"
+    "verified": "13.341"
   },
   "relationships": {
     "systems": [
@@ -29,8 +29,5 @@
   "styles": [
     "styles/jubilee-veto.css"
   ],
-  "socket": true,
-  "url": "",
-  "manifest": "",
-  "download": ""
+  "socket": true
 }
